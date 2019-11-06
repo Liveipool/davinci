@@ -27,12 +27,18 @@ export const env = envName.production
 
 export default {
   dev: {
-    host: '/api/v3',
-    shareHost: '/share.html'
+    iframeUrl: 'http://localhost:5000',
+    host: 'http://10.107.118.108:9001/api/rest_s/v1/visualis',
+    shareHost: '/share.html',
+  },
+  sit: {
+    iframeUrl: '/dws/vg/#',
+    host: '/api/rest_s/v1/visualis',
+    shareHost: '/dws/vg/share.html',
   },
   production: {
-  //  host: '/api/v1',
-    host: '/api/v3',
-    shareHost: '/share.html'
+    host: '/api/rest_s/v1/visualis',
+    shareHost: '/dws/vg/share.html',
+    iframeUrl: '/dws/vg/#',
   }
 }
