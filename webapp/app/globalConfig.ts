@@ -19,11 +19,11 @@
  */
 
 export const envName = {
+  sit: 'sit',
   production: 'production',
-  dev: 'dev'
+  development: 'dev'
 }
-
-export const env = envName.production
+export const env = envName[process.env.NODE_ENV]
 
 export default {
   dev: {
