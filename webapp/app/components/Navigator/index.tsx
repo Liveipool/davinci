@@ -81,45 +81,42 @@ export function Navigator (props: INavigatorProps) {
   )
 
   return (
-    <div></div>
-
-    // 完整的导航栏代码
-    // <nav className={headerClass}>
-    //   <div className={styles.logoPc}>
-    //     <div className={styles.logo}>
-    //       <Link to="/projects">
-    //         <img src={require('assets/images/logo.svg')} />
-    //       </Link>
-    //     </div>
-    //   </div>
-    //   <div className={styles.logoMobile}>
-    //     <div className={styles.logo}>
-    //       <Link to="/projects">
-    //         <img src={require('assets/images/logo_mobile.svg')} />
-    //       </Link>
-    //     </div>
-    //   </div>
-    //   <ul className={styles.tools}>
-    //     <li>
-    //       <DownloadList
-    //         downloadList={downloadList}
-    //         onLoadDownloadList={onLoadDownloadList}
-    //         onDownloadFile={onDownloadFile}
-    //       />
-    //     </li>
-    //     <li>
-    //       <Icon type="file-text" onClick={goDoc} />
-    //     </li>
-    //     <li>
-    //       <Icon type="github" onClick={goGithub}/>
-    //     </li>
-    //     <li>
-    //       <Dropdown overlay={menu} trigger={['click']} placement="bottomCenter">
-    //         <Icon type="user" />
-    //       </Dropdown>
-    //     </li>
-    //   </ul>
-    // </nav>
+    <nav className={headerClass}>
+      <div className={styles.logoPc}>
+        <div className={styles.logo}>
+          <Link to="/projects">
+            <img src={require('assets/images/logo.svg')} />
+          </Link>
+        </div>
+      </div>
+      <div className={styles.logoMobile}>
+        <div className={styles.logo}>
+          <Link to="/projects">
+            <img src={require('assets/images/logo_mobile.svg')} />
+          </Link>
+        </div>
+      </div>
+      <ul className={styles.tools}>
+        <li>
+          <DownloadList
+            downloadList={downloadList}
+            onLoadDownloadList={onLoadDownloadList}
+            onDownloadFile={onDownloadFile}
+          />
+        </li>
+        <li>
+          <Icon type="file-text" onClick={goDoc} />
+        </li>
+        <li>
+          <Icon type="github" onClick={goGithub}/>
+        </li>
+        <li>
+          <Dropdown overlay={menu} trigger={['click']} placement="bottomCenter">
+            <Icon type="user" />
+          </Dropdown>
+        </li>
+      </ul>
+    </nav>
   )
 }
 
