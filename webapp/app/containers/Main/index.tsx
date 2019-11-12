@@ -137,7 +137,6 @@ export class Main extends React.Component<IMainProps, {}> {
 
   public render () {
     const { logged, navigator, children } = this.props
-
     return logged
       ? (
         <div className={styles.container}>
