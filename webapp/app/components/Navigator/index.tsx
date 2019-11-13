@@ -71,12 +71,12 @@ export function Navigator (props: INavigatorProps) {
           用户设置
         </Link>
       </Menu.Item>
-      <Menu.Divider />
-      <Menu.Item key="3">
+      {/* <Menu.Divider /> */}
+      {/* <Menu.Item key="3">
         <a href="javascript:;" onClick={onLogout}>
           退出登录
         </a>
-      </Menu.Item>
+      </Menu.Item> */}
     </Menu>
   )
 
