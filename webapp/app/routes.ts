@@ -50,6 +50,7 @@ import Organization from 'containers/Organizations/Organization'
 import UserProfile from 'containers/Profile/UserProfile'
 import {replace} from 'react-router-redux'
 import NoAuthorization from 'containers/NoAuthorization'
+import RoutePage from 'containers/RoutePage'
 
 const errorLoading = (err) => {
   console.error('Dynamic page loading failed', err) // eslint-disable-line no-console
@@ -217,6 +218,11 @@ export default function createRoutes (store): IExtendedRouteProps[] {
       path: '/noAuthorization',
       name: 'noAuthorization',
       component: NoAuthorization
+    },
+    {
+      path: '/proxy',
+      name: 'routePage',
+      component: RoutePage
     },
     {
       path: '*',
