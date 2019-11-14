@@ -38,6 +38,8 @@ export class SqlPreview extends React.PureComponent<ISqlPreviewProps, ISqlPrevie
 
   private prepareTable = memoizeOne((columns: ISqlColumn[], resultList: any[]) => {
     const rowKey = `rowKey_${new Date().getTime()}`
+    // 防止查询结果为空就报错的情况
+    if (!resultList) resultList = []
     resultList.forEach((record, idx) => record[rowKey] = Object.values(record).join('_') + idx)
 
     const tableColumns = columns.map<ColumnProps<any>>((col) => {
@@ -52,6 +54,8 @@ export class SqlPreview extends React.PureComponent<ISqlPreviewProps, ISqlPrevie
   })
 
   private static computeColumnWidth = (resultList: any[], columnName: string) => {
+    // 防止查询结果为空就报错的情况
+    if (!resultList) resultList = []
     let textList = resultList.map((item) => item[columnName])
     textList = textList.filter((text, idx) => textList.indexOf(text) === idx)
     const contentMaxWidth = textList.reduce((maxWidth, text) =>
