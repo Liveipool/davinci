@@ -78,7 +78,7 @@ import { ViewActions } from '../View/actions'
 const { loadViewDataFromVizItem, loadViewsDetail } = ViewActions // @TODO global filter in Display
 import { makeSelectWidgets } from '../Widget/selectors'
 import { makeSelectFormedViews } from '../View/selectors'
-import { GRID_ITEM_MARGIN, DEFAULT_BASELINE_COLOR, DEFAULT_SPLITER } from 'app/globalConstants'
+import { GRID_ITEM_MARGIN, DEFAULT_BASELINE_COLOR, DEFAULT_SPLITER, MAX_LAYER_COUNT } from 'app/globalConstants'
 // import { LayerContextMenu } from './components/LayerContextMenu'
 
 import { ISlideParams } from './types'
@@ -632,6 +632,7 @@ export class Editor extends React.Component<IEditorProps, IEditorStates> {
   }
 
   private pasteLayers = () => {
+    if (this.state.currentLocalLayers && this.state.currentLocalLayers.length >= MAX_LAYER_COUNT) return message.warning(`当前最多只支持添加${MAX_LAYER_COUNT}个图层`, 5);
     const { currentDisplay, currentSlide, clipboardLayers, onPasteSlideLayers } = this.props
     if (!clipboardLayers.length) { return }
     onPasteSlideLayers(currentDisplay.id, currentSlide.id, clipboardLayers)
@@ -891,6 +892,7 @@ export class Editor extends React.Component<IEditorProps, IEditorStates> {
       <div className={`${styles.preview} ${styles.edit}`}>
         <Helmet title={currentDisplay.name} />
         <DisplayHeader
+          layers={currentLocalLayers}
           display={currentDisplay}
           widgets={widgets}
           params={params}

@@ -39,6 +39,8 @@ export const DASHBOARD_ITEM_FILTER_HEIGHT = 40
 export const DEFAULT_TABLE_PAGE = 1
 export const DEFAULT_TABLE_PAGE_SIZE = 20
 export const TABLE_PAGE_SIZES = [10, 20, 30, 40, 50, 100, 5000]
+// Display编辑页里最多能支持多少个图层
+export const MAX_LAYER_COUNT = 30
 
 export const PIVOT_CELL_PADDING = 4
 export const PIVOT_CELL_BORDER = 1
