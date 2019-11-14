@@ -858,6 +858,7 @@ export class Editor extends React.Component<IEditorProps, IEditorStates> {
 
     let settingContent = null
     if (currentSelectedLayers.length > 1) {
+      // 如果当前同时选择了两个layer，则显示 LayerAlign，进行图层间的对齐设置
       settingContent = (
         <LayerAlign
           layers={currentSelectedLayers}
@@ -866,10 +867,13 @@ export class Editor extends React.Component<IEditorProps, IEditorStates> {
         />
       )
     } else if (settingInfo.id) {
+      // 如果当前只选择了一个layer，或者一个都没选时，则显示下面的内容
       settingContent = (
+        // 最右侧的 设置栏
         <SettingForm
           key={settingInfo.key}
           id={settingInfo.id}
+          // 设置项
           settingInfo={settingInfo.setting}
           settingParams={settingInfo.param}
           onDisplaySizeChange={this.displaySizeChange}
@@ -877,6 +881,7 @@ export class Editor extends React.Component<IEditorProps, IEditorStates> {
           onCollapseChange={this.collapseChange}
         >
           {currentSelectedLayers.length === 0 ? (
+            // 最右下角的 封面 部分
             <DisplaySetting
               key="displaySetting"
               display={currentDisplay}
@@ -891,6 +896,7 @@ export class Editor extends React.Component<IEditorProps, IEditorStates> {
     return (
       <div className={`${styles.preview} ${styles.edit}`}>
         <Helmet title={currentDisplay.name} />
+        {/* 顶栏 */}
         <DisplayHeader
           layers={currentLocalLayers}
           display={currentDisplay}
@@ -907,6 +913,7 @@ export class Editor extends React.Component<IEditorProps, IEditorStates> {
           canRedo={canRedo}
         />
         <DisplayBody>
+          {/* 左侧的大容器 */}
           <DisplayContainer
             key="editor"
             slideParams={slideParams}
@@ -919,6 +926,7 @@ export class Editor extends React.Component<IEditorProps, IEditorStates> {
           >
             {[...baselines, ...layerItems]}
           </DisplayContainer>
+          {/* 左侧底部的 */}
           <DisplayBottom
             scale={scale}
             sliderValue={sliderValue}
@@ -926,7 +934,9 @@ export class Editor extends React.Component<IEditorProps, IEditorStates> {
             onZoomOut={this.zoomOut}
             onSliderChange={this.sliderChange}
           />
+          {/* 右侧的两栏 */}
           <DisplaySidebar>
+            {/* 图层列表 */}
             <LayerList
               layers={currentLocalLayers}
               layersStatus={currentLayersOperationInfo}
@@ -935,6 +945,7 @@ export class Editor extends React.Component<IEditorProps, IEditorStates> {
               onEditDisplayLayers={this.onEditLayers}
               onCollapseChange={this.collapseChange}
             />
+            {/* 最右侧的设置栏 */}
             {settingContent}
           </DisplaySidebar>
         </DisplayBody>
