@@ -95,7 +95,8 @@ export class DisplayList extends React.PureComponent<IDisplayListProps, IDisplay
         ...val,
         projectId,
         // 当前是否是复制操作
-        isCopy: false
+        isCopy: false,
+        avatar: `${Math.ceil(Math.random() * 19)}`
       }, () => { this.hideDisplayFormModal() })
     } else if (type === 'copy') {
       onAdd({
@@ -103,7 +104,8 @@ export class DisplayList extends React.PureComponent<IDisplayListProps, IDisplay
         projectId,
         // 复制的那个display的id
         targetId: currentDisplayId,
-        isCopy: true
+        isCopy: true,
+        avatar: `${Math.ceil(Math.random() * 19)}`
       }, () => { this.hideDisplayFormModal() })
     } else {
       onEdit({
@@ -199,7 +201,7 @@ export class DisplayList extends React.PureComponent<IDisplayListProps, IDisplay
 
   private renderDisplay (display: IDisplay) {
     const coverStyle: React.CSSProperties = {
-      backgroundImage: `url(${display.avatar})`
+      backgroundImage: `url(${require(`assets/images/bg${display.avatar}.png`)}`
     }
     const { onDisplayClick, onDelete, currentProject } = this.props
 
