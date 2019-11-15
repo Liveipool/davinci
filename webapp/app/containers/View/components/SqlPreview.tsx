@@ -98,11 +98,10 @@ export class SqlPreview extends React.PureComponent<ISqlPreviewProps, ISqlPrevie
 
   public render () {
     const { loading, response, size } = this.props
-    const { totalCount, columns, resultList } = response
+    const { columns, resultList } = response
     const paginationConfig: PaginationConfig = {
       ...SqlPreview.basePagination,
-      total: totalCount
-
+      total: resultList ? resultList.length : 0
     }
     const { tableColumns, rowKey } = this.prepareTable(columns, resultList)
     const scroll: TableProps<any>['scroll'] = {
