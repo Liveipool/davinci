@@ -23,6 +23,9 @@ import {
   makeSelectCurrentProject
 } from './selectors'
 
+import {
+  loadDataFromItem } from '../Bizlogic/actions'
+import config, { env } from '../../globalConfig'
 import { FieldSortTypes } from 'containers/Widget/components/Config/Sort'
 import { widgetDimensionMigrationRecorder } from 'utils/migrationRecorders'
 
@@ -33,6 +36,7 @@ import DisplayActions from './actions'
 import LayerItem from './components/LayerItem'
 
 const styles = require('./Display.less')
+const Spin = require('antd/lib/Spin')
 import { IWidgetConfig, RenderType } from 'containers/Widget/components/Widget'
 import { decodeMetricName } from 'containers/Widget/components/util'
 import { IQueryConditions, IDataRequestParams } from 'containers/Dashboard/Grid'
@@ -78,7 +82,8 @@ interface IPreviewProps {
 }
 
 interface IPreviewStates {
-  scale: [number, number]
+  scale: [number, number],
+  spinning: boolean
 }
 
 export class Preview extends React.Component<IPreviewProps, IPreviewStates> {
@@ -88,8 +93,15 @@ export class Preview extends React.Component<IPreviewProps, IPreviewStates> {
   public constructor (props) {
     super(props)
     this.state = {
-      scale: [1, 1]
+      scale: [1, 1],
+      spinning: true
     }
+  }
+
+  private picOnload() {
+    this.setState({
+      spinning: false
+    })
   }
 
   public componentWillMount () {
@@ -425,6 +437,7 @@ export class Preview extends React.Component<IPreviewProps, IPreviewStates> {
   }
 
   public render () {
+    const {spinning} = this.state;
     const {
       widgets,
       views,
@@ -432,45 +445,25 @@ export class Preview extends React.Component<IPreviewProps, IPreviewStates> {
       currentDisplay,
       currentSlide,
       currentLayers,
-      currentLayersInfo } = this.props
+      currentLayersInfo,
+      params } = this.props
     if (!currentDisplay) { return null }
-
+    const displayId = +params.displayId
+    const dashboardId = +params.dashboardId
+    let host = `${config[env].host}`
+    if (displayId) {
+      host += `/displays/${displayId}/preview`
+    } else {
+      host += `/dashboard/${dashboardId}/preview`
+    }
     const { scale } = this.state
     const slideParams = JSON.parse(currentSlide.config).slideParams
     const previewStyle = this.getPreviewStyle(slideParams)
-    const slideStyle = this.getSlideStyle(slideParams, scale)
-    const layerItems =  Array.isArray(widgets) ? currentLayers.map((layer) => {
-      const widget = widgets.find((w) => w.id === layer.widgetId)
-      const model = widget && formedViews[widget.viewId].model
-      const layerId = layer.id
-
-      const { polling, frequency } = JSON.parse(layer.params)
-      const { datasource, loading, interactId, rendered, renderType } = currentLayersInfo[layerId]
-
-      return (
-        <LayerItem
-          key={layer.id}
-          ref={(f) => this[`layerId_${layer.id}`]}
-          pure={true}
-          layer={layer}
-          itemId={layerId}
-          widget={widget}
-          model={model}
-          datasource={datasource}
-          loading={loading}
-          polling={polling}
-          frequency={frequency}
-          interactId={interactId}
-          rendered={rendered}
-          renderType={renderType}
-          onGetChartData={this.getChartData}
-        />
-      )
-    }) : null
     return (
       <div className={styles.preview} style={previewStyle}>
-        <div className={styles.board} style={slideStyle}>
-          {layerItems}
+        <Spin className={styles.preivewLoading} spinning={spinning} size="large"/>
+        <div className={styles.previewImgWrapper}>
+          <img src={host} onLoad={() => {this.picOnload()}}/>
         </div>
       </div>
     )
