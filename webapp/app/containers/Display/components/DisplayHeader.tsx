@@ -314,7 +314,7 @@ export class DisplayHeader extends React.Component<IDisplayHeaderProps, IDisplay
           <ul className={styles.commandGroup}>
             <li>
               <Tooltip placement="bottom" title="预览">
-                <a href={`/#/project/${pid}/display/preview/${displayId}`} target="_blank">
+                <a href={`./#/project/${pid}/display/preview/${displayId}`} target="_blank">
                   <i className="iconfont icon-preview" />
                 </a>
               </Tooltip>
