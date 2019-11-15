@@ -1,7 +1,7 @@
 {
-  "name": "davinci-webapp",
-  "version": "0.3.0",
-  "description": "Davinci Web Application",
+  "name": "Visualis",
+  "version": "0.5.0",
+  "description": "Visualis Web Application",
   "engines": {
     "npm": ">=5",
     "node": ">=8.10.0"

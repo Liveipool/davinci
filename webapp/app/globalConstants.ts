@@ -193,7 +193,7 @@ export const SQL_TYPES = SQL_STRING_TYPES.concat(SQL_NUMBER_TYPES).concat(SQL_DA
 
 export type SqlTypes = typeof SQL_TYPES[number]
 
-export const DEFAULT_SPLITER = '@davinci@'
+export const DEFAULT_SPLITER = '@Visualis@'
 export const KEY_COLUMN = 'davinciUniqueId'
 
 export const DEFAULT_FONT_WEIGHT = 'normal'
