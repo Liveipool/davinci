@@ -208,6 +208,11 @@ export default function createRoutes (store): IExtendedRouteProps[] {
           component: Preview
         },
         {
+          path: '/project/:pid/dashboard/preview/:dashboardId',
+          name: 'dashboardPreview',
+          component: Preview
+        },
+        {
           path: '/project/:pid/widget/:wid',
           name: 'workbench',
           component: Workbench
