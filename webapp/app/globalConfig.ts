@@ -28,7 +28,7 @@ export const env = envName[process.env.NODE_ENV]
 export default {
   dev: {
     iframeUrl: 'http://localhost:5000',
-    host: 'http://10.107.118.108:9001/api/rest_s/v1/visualis',
+    host: 'http://yourServerIp:yourServerPort/api/rest_s/v1/visualis',
     shareHost: '/share.html',
   },
   sit: {
