@@ -31,7 +31,7 @@ const { loadViewDataFromVizItem } = ViewActions // @TODO global filter in Displa
 import DisplayActions from './actions'
 
 const styles = require('./Display.less')
-const Spin = require('antd/lib/Spin')
+import { Spin } from 'antd'
 import { RenderType } from 'containers/Widget/components/Widget'
 import { IQueryConditions, IDataRequestParams } from 'containers/Dashboard/Grid'
 import { IFormedViews } from 'containers/View/types'
