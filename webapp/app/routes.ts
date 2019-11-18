@@ -71,27 +71,27 @@ export default function createRoutes (store): IExtendedRouteProps[] {
     {
       component: Background,
       childRoutes: [
-        {
-          path: '/login',
-          component: Login
-        },
-        {
-          path: '/register',
-          name: 'register',
-          component: Register
-        },
-        {
-          path: '/joinOrganization',
-          name: 'joinOrganization',
-          component: JoinOrganization
-        }
+        // {
+        //   path: '/login',
+        //   component: Login
+        // },
+        // {
+        //   path: '/register',
+        //   name: 'register',
+        //   component: Register
+        // },
+        // {
+        //   path: '/joinOrganization',
+        //   name: 'joinOrganization',
+        //   component: JoinOrganization
+        // }
       ]
     },
-    {
-      path: '/activate',
-      name: 'activate',
-      component: Activate
-    },
+    // {
+    //   path: '/activate',
+    //   name: 'activate',
+    //   component: Activate
+    // },
     {
       component: Main,
       childRoutes: [
