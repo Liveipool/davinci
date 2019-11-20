@@ -60,6 +60,10 @@ export class Main extends React.Component<IMainProps, {}> {
     }
   }
 
+  public componentWillReceiveProps () {
+    if (location.hash.includes('projects?withHeader=true')) sessionStorage.setItem('withHeader', 'true')
+  }
+
   private checkTokenLink = () => {
     const {
       router,
@@ -140,10 +144,12 @@ export class Main extends React.Component<IMainProps, {}> {
     return logged
       ? (
         <div className={styles.container}>
-          <Navigator
+          {sessionStorage.getItem('withHeader') ?
+            <Navigator
             show={navigator}
             onLogout={this.logout}
-          />
+          /> : null
+          }
           {children}
         </div>
       )
